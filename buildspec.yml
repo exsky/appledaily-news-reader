@@ -4,13 +4,12 @@ phases:
   pre_build:
     commands:
       - echo Nothing to do in the pre_build phase...
+      - echo ${SenderSecret}
   build:
     commands:
       - echo Build started on `date`
-      - make run
+      - make build_image
   post_build:
     commands:
       - echo Build completed on `date`
-artifacts:
-  files:
-    - news/news_quick.txt
+      - make push_image

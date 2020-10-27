@@ -1,6 +1,20 @@
 import argparse
+from datetime import datetime
 from libs.creator import Creator, Mode
+from libs.sendmail import MailSender as ms
 
+
+def get_quick_news_text():
+    with open('news/news_quick.txt', 'r') as file:
+        data = file.read()
+        return data
+
+def send_quicknews_to_subscriber():
+    now = datetime.now()
+    title = '即時新聞 - {}'.format(now.strftime('%Y-%m-%d %H:%M'))
+    content = get_quick_news_text()
+    mail = ms(title, content)
+    mail.send_mail()
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="An AppleDaily News Grubber")
@@ -28,12 +42,14 @@ if __name__ == '__main__':
         if args.quick:
             ctr = Creator(Mode.QUICK)
             ctr.gen_file()
+            send_quicknews_to_subscriber()
         if args.category:
             print(arg.category)
         if True not in [args.title, args.link, args.quick]:
             # Default
             ctr = Creator(Mode.QUICK)
             ctr.gen_file()
-        print('Complete !!')
+            send_quicknews_to_subscriber()
+        print('Crawling Complete !!')
     except Exception as e:
         print(e)

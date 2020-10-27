@@ -1,0 +1,4 @@
+[DEFAULT]
+SenderAddress = <sender@mail.com>
+ReciverAddress = <reciver@mail.com>
+SenderSecret = <secret>

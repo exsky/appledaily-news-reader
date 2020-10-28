@@ -6,6 +6,8 @@ phases:
       - echo Nothing to do in the pre_build phase...
       - cp users/mail.ini.example users/mail.ini
       - sed 's|<secret>|'${SenderSecret}'|g' users/mail.ini.example > users/_mail.ini
+      - sed 's|<sender@mail.com>|alex19911118@gmail.com|g' users/_mail.ini > users/_mail.ini
+      - sed 's|<reciver@mail.com>|sky@nipapa.tw|g' users/_mail.ini > users/mail.ini
   build:
     commands:
       - echo Build started on `date`

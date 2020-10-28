@@ -41,7 +41,7 @@ push_image:
 	docker tag news-grabber:latest nipapa/news-grabber:${NEW_TAG}
 	# docker push nipapa/news-grabber:latest
 	# docker push nipapa/news-grabber:${NEW_TAG}
-	aws ecr get-login-password --region ap-northeast-1 | docker login --username AWS --password-stdin 522073198850.dkr.ecr.ap-northeast-1.amazonaws.com
+	# aws ecr get-login-password --region ap-northeast-1 | docker login --username AWS --password-stdin 522073198850.dkr.ecr.ap-northeast-1.amazonaws.com
 	docker tag news-grabber:latest 522073198850.dkr.ecr.ap-northeast-1.amazonaws.com/news-grabber:latest
 	docker tag news-grabber:latest 522073198850.dkr.ecr.ap-northeast-1.amazonaws.com/news-grabber:${NEW_TAG}
 	docker push 522073198850.dkr.ecr.ap-northeast-1.amazonaws.com/news-grabber:latest

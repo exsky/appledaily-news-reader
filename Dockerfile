@@ -11,4 +11,4 @@ WORKDIR /source
 ADD . /source
 RUN ["make", "install-pippkg"]
 
-CMD ["make", "run"]
+CMD ["make", "set_key", "run"]

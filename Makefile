@@ -31,6 +31,13 @@ run_grab_all:
 test:
 	echo ${CURR_DIR}
 
+# ONLY USE IN GNU SED !!!
+set_key:
+	sed 's/<sender@mail.com>/${sender_addr}/g' users/mail.ini.example > users/mail.ini
+	sed -i 's/<reciver@mail.com>/${reciver_addr}/g' users/mail.ini
+	sed -i 's/<secret>/${secret}/g' users/mail.ini
+	cat users/mail.ini
+
 build_image:
 	# docker rmi -f ${LATEST_IMGID}
 	make update-pippkg

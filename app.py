@@ -33,23 +33,13 @@ if __name__ == '__main__':
     # Entrypoint
     try:
         print(args)
-        if args.title:
-            ctr = Creator(Mode.TITLE)
-            ctr.gen_file()
-        if args.link:
-            ctr = Creator(Mode.LINK)
-            ctr.gen_file()
-        if args.quick:
-            ctr = Creator(Mode.QUICK)
-            ctr.gen_file()
-            send_quicknews_to_subscriber()
-        if args.category:
-            print(arg.category)
-        if True not in [args.title, args.link, args.quick]:
-            # Default
-            ctr = Creator(Mode.QUICK)
-            ctr.gen_file()
-            send_quicknews_to_subscriber()
+        ctr = Creator(Mode.TITLE)
+        ctr.gen_file()
+        ctr = Creator(Mode.LINK)
+        ctr.gen_file()
+        ctr = Creator(Mode.QUICK)
+        ctr.gen_file()
+        send_quicknews_to_subscriber()
         print('Crawling Complete !!')
     except Exception as e:
         print(e)

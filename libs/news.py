@@ -6,8 +6,7 @@ class NewsIngress:
 
     def __init__(self, url=None):
         if not url:
-            # url = 'https://tw.appledaily.com/realtime/new/'
-            url = 'https://tw.appledaily.com/realtime/recommand/'
+            url = 'https://tw.appledaily.com/realtime/recommend/'
         self.resp = requests.get(url)
         self.status = self.resp.status_code
         self.soup = BeautifulSoup(self.resp.text, 'html.parser')

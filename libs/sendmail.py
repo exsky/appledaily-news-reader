@@ -1,3 +1,4 @@
+import re
 import smtplib
 from configparser import ConfigParser
 from email.mime.multipart import MIMEMultipart
@@ -14,11 +15,14 @@ class MailSender:
         self.sender = cfg['DEFAULT']['SenderAddress']
         self.sender_secret = cfg['DEFAULT']['SenderSecret']
         if not revicer_addr:
-            self.reciver = cfg['DEFAULT']['ReciverAddress']
+            receiver_str = cfg['DEFAULT']['ReciverAddress']
+            self.receiver = re.findall(r"[\w\+]+@\w+[^,\s]*", receiver_str)
         else:
-            self.reciver = reciver_addr
+            receiver_str = reciver_addr
+            self.receiver = re.findall(r"[\w\+]+@\w+[^,\s]*", receiver_str)
+        # Setup receiver(s)
         self.content['from'] = self.sender
-        self.content['to'] = self.reciver
+        self.content['to'] = self.receiver
 
         # Load mail title if value
         if title:
@@ -43,6 +47,6 @@ class MailSender:
                 smtp.starttls()
                 smtp.login(self.sender, self.sender_secret)
                 smtp.send_message(self.content)
-                print("Send Mail succeed: "+str(self.reciver))
+                print("Send Mail succeed: "+str(self.receiver))
             except Exception as e:
                 print("Error message: ", e)

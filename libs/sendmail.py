@@ -16,13 +16,12 @@ class MailSender:
         self.sender_secret = cfg['DEFAULT']['SenderSecret']
         if not revicer_addr:
             receiver_str = cfg['DEFAULT']['ReciverAddress']
-            self.receiver = re.findall(r"[\w\+]+@\w+[^,\s]*", receiver_str)
         else:
             receiver_str = reciver_addr
-            self.receiver = re.findall(r"[\w\+]+@\w+[^,\s]*", receiver_str)
+        self.receiver = re.findall(r"[\w\+]+@\w+[^,\s]*", receiver_str)
         # Setup receiver(s)
         self.content['from'] = self.sender
-        self.content['to'] = self.receiver
+        self.content['to'] = ','.join(self.receiver)
 
         # Load mail title if value
         if title:
@@ -32,13 +31,13 @@ class MailSender:
 
         # Load mail content if value
         if content:
-            self.content.attach(MIMEText(content))
+            self.content.attach(MIMEText(content, 'plain', 'utf-8'))
 
     def set_title(self, title):
         self.title = str(title)
 
     def set_content(self, mail_content):
-        self.content.attach(MIMEText(mail_content))
+        self.content.attach(MIMEText(mail_content, 'plain', 'utf-8'))
 
     def send_mail(self):
         with smtplib.SMTP(host="smtp.gmail.com", port="587") as smtp:  # 設定SMTP伺服器

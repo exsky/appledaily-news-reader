@@ -1,6 +1,7 @@
 import argparse
 from datetime import datetime
 from libs.creator import Creator, Mode
+from libs.keysetup import gen_mail_ini
 from libs.sendmail import MailSender as ms
 
 
@@ -14,6 +15,7 @@ def send_quicknews_to_subscriber():
     title = '即時新聞 - {}'.format(now.strftime('%Y-%m-%d %H:%M'))
     content = get_quick_news_text()
     mail = ms(title, content)
+    print('Mail ready ...')
     mail.send_mail()
 
 if __name__ == '__main__':
@@ -33,6 +35,7 @@ if __name__ == '__main__':
     # Entrypoint
     try:
         print(args)
+        gen_mail_ini()
         if args.title:
             ctr = Creator(Mode.TITLE)
             ctr.gen_file()

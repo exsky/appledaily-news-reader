@@ -6,9 +6,11 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
+boto3 = "*"
+botocore = "*"
 beautifulsoup4 = "*"
+urllib3 = "*"
 requests = "*"
-requests2 = "*"
 
 [requires]
 python_version = "3.8"

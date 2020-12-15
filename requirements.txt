@@ -1,8 +1,14 @@
 beautifulsoup4==4.9.3
+boto3==1.16.36
+botocore==1.19.36
 certifi==2020.6.20
 chardet==3.0.4
 idna==2.5
+jmespath==0.10.0
+python-dateutil==2.8.1
 requests==2.24.0
 requests2==2.16.0
-soupsieve==2.0.1
-urllib3==1.21.1
+s3transfer==0.3.3
+six==1.15.0
+soupsieve==2.1
+urllib3==1.26.2

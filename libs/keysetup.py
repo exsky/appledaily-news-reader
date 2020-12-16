@@ -60,6 +60,7 @@ def get_sender_secret():
             decoded_binary_keyid = base64.b64decode(get_secret_value_response['Parameter'])
             return decoded_binary_keyid
 
+
 def get_receiver_addr():
 
     try:
@@ -67,6 +68,7 @@ def get_receiver_addr():
     except:  # Failed to get ReciverAddress from environment var
         receiver_addr = 'sky@nipapa.tw'
     return receiver_addr
+
 
 def gen_mail_ini():
 
